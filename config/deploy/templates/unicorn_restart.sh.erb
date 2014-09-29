@@ -1,0 +1,12 @@
+#!/bin/bash
+
+cd <%= fetch(:deploy_to) %>/current
+export RBENV_ROOT=<%= fetch(:rbenv_path) %>
+export RBENV_DIR=<%= fetch(:rbenv_path) %>
+export PATH
+export PATH="$RBENV_ROOT/bin:$PATH:/usr/local/bin"
+eval "$(rbenv init -)"
+
+CAP_ENV=${CAP_ENV:-production}
+
+bundle exec cap $CAP_ENV unicorn:legacy_restart

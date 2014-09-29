@@ -1,0 +1,12 @@
+#!/bin/bash
+
+cd <%= fetch(:deploy_to) %>/current
+export RBENV_ROOT=<%= fetch(:rbenv_path) %>
+export RBENV_DIR=<%= fetch(:rbenv_path) %>
+export PATH
+export PATH="$RBENV_ROOT/bin:$PATH:/usr/local/bin"
+eval "$(rbenv init -)"
+
+UNICORN_ENV=${UNICORN_ENV:-production}
+
+bundle exec unicorn -c <%= fetch(:unicorn_config_path) %> -E $UNICORN_ENV

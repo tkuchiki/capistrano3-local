@@ -1,0 +1,4 @@
+check process unicorn
+  with  pidfile <%= fetch(:unicorn_pid) %>
+  start program = "<%= fetch(:unicorn_start_script) %>" as uid "<%= fetch(:unicorn_user) %>" and gid "<%= fetch(:unicorn_group) %>"
+  stop  program = "<%= fetch(:unicorn_stop_script) %>"

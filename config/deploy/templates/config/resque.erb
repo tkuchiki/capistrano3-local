@@ -1,0 +1,4 @@
+check process resque
+  with  pidfile <%= fetch(:resque_pid) %>
+  start program = "<%= fetch(:resque_start_script)%>" as uid "<%= fetch(:resque_user) %>" and gid "<%= fetch(:resque_group) %>"
+  stop  program = "<%= fetch(:resque_stop_script) %>"
